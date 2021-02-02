@@ -1,3 +1,106 @@
-.cardContainer{
-    color: red;
+body{
+    background-image: url("https://s3.amazonaws.com/thinkific-import-development/292401/background-210125-235634.png");
 }
+
+li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* basic setting end */
+
+/*header*/
+#title{
+    color: #f64435;
+    font-size: 35px;
+}
+
+main{
+    width :80vw;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.cardContainer{
+    color: #f64435;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.navListWrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.navListWrapper li{
+    color: white;
+    margin: 10px;
+    background-color: #f64435;
+    width: 100%;
+    text-align: center;
+    padding: 10px 3px
+}
+.navListWrapper li:hover{
+    background-color: blue;
+}
+/*footer*/
+footer{
+    width: 80vw;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 60px;
+}
+
+footer a{
+    color: #2d2d2d;
+}
+
+/*contents start*/
+
+
+
+
+
+/* 
+ {
+
+    --bg-main-color: #00000080;
+  
+    --bg-accent-color: #2d2d2d;
+  
+    --accent-color: #f64435;
+  
+    --text-accent-color: #ffe498;
+  
+    --text-edit-bg-color: #575757;
+  
+    --border-color: #3f3f3f;
+  
+    --shadow-color: #202020;
+  
+    --document-bg-color: #68686850;
+  
+    --component-bg-gradient: radial-gradient(circle, #646464e6 0%, #363636e6 100%);
+  
+    --smokywhite: #dddbd8;
+  
+    --black: #000000;
+  
+    --translucent-black: #00000099;
+  
+  } */
