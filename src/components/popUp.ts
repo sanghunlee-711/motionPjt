@@ -1,13 +1,33 @@
-export class PopUpComponent {
-  private element: HTMLElement;
-  private name: string;
-  private titleWrapper: HTMLDivElement;
-  private titleSpan: HTMLSpanElement;
-  private contentWrapper: HTMLDivElement;
-  private inputTitle: HTMLInputElement;
-  private inputContents: HTMLInputElement;
-  private quitButton: HTMLButtonElement;
-  private submitButton: HTMLButtonElement;
+import { App } from "../app.js";
+
+export interface PopUpComponent {
+  element: HTMLElement;
+  name: string;
+  titleWrapper: HTMLDivElement;
+  titleSpan: HTMLSpanElement;
+  contentWrapper: HTMLDivElement;
+  inputTitle: HTMLInputElement;
+  inputContents: HTMLInputElement;
+  quitButton: HTMLButtonElement;
+  submitButton: HTMLButtonElement;
+  deleteButton?: HTMLButtonElement;
+  newButton?: HTMLButtonElement;
+
+  quitpopUp(): void;
+  showPopUp(title: string, contents: string): void;
+}
+
+export class PopUpComponentImpl implements PopUpComponent {
+  element: HTMLElement;
+  name: string;
+  titleWrapper: HTMLDivElement;
+  titleSpan: HTMLSpanElement;
+  contentWrapper: HTMLDivElement;
+  inputTitle: HTMLInputElement;
+  inputContents: HTMLInputElement;
+  quitButton: HTMLButtonElement;
+  submitButton: HTMLButtonElement;
+  newButton: HTMLButtonElement;
   constructor(titleForInput: string, contentsForInput: string) {
     this.name = titleForInput;
     this.element = document.createElement("section");
@@ -35,6 +55,7 @@ export class PopUpComponent {
     this.quitButton = document.createElement("button");
     this.quitButton.textContent = "X";
     this.quitButton.setAttribute("class", "quitButton");
+    this.newButton = document.createElement("button");
 
     this.element.appendChild(this.titleWrapper);
     this.element.appendChild(this.contentWrapper);
@@ -42,17 +63,44 @@ export class PopUpComponent {
     this.element.appendChild(this.quitButton);
   }
 
-  quitpopUp() {
+  quitpopUp(): void {
     const parent = document.querySelector(".page");
     const child = document.querySelector(".popUpContainer");
     console.log(child);
     parent?.removeChild(child! as Node);
     // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
   }
-  showPopUp(title: string, contents: string) {
-    const newPopUp = new PopUpComponent(title, contents);
+  showPopUp(title: string, contents: string): void {
+    console.log("wrok?");
+    const newPopUp = new PopUpComponentImpl(title, contents);
+    const titleOfNewPopUp = newPopUp.titleSpan.innerText.split(" ")[0];
+
+    console.log("newPopUp.titleSpan", titleOfNewPopUp);
+
+    if (titleOfNewPopUp === "TODO") {
+      console.log("Hellothere");
+
+      this.newButton.setAttribute("class", "addButton");
+      this.newButton.setAttribute("type", "submit");
+      this.element.insertAdjacentElement("afterbegin", this.newButton);
+
+      document
+        .querySelector(".addButton")
+        ?.addEventListener("click", this.addTodo);
+    }
+
     document
       .querySelector(".page")
       ?.insertAdjacentElement("afterbegin", newPopUp.element);
+  }
+  // only for Todo List
+  addButton(title: string): void {
+    if (title === "TODO") {
+    } else {
+      return;
+    }
+  }
+  addTodo() {
+    console.log("addTodod~!!");
   }
 }
