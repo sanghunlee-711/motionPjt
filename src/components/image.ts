@@ -5,10 +5,9 @@ export class ImageComponent {
     private textSpan: HTMLSpanElement;
     private deleteButton: HTMLButtonElement;
     constructor(text:string, imageURL: string){
-
-
         this.element = document.createElement("li");
-        this.element.setAttribute("class", "imageComp");
+        this.element.setAttribute('class', 'element');
+
 
         this.textSpan = document.createElement("span");
         this.textSpan.textContent = text
