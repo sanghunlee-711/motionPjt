@@ -10,6 +10,7 @@ a{
     text-decoration: none;
 }
 
+
 /* basic setting end */
 
 /*header*/
@@ -19,7 +20,8 @@ a{
 }
 
 main{
-    width :80vw;
+    width : 100%;
+    max-width: 1000px;
     height: 100vh;
     margin: 0 auto;
 }
@@ -75,46 +77,39 @@ footer a{
     background-color: #302E30;
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.cardContainer{
+.page{
+    width: 100%;
+}
+
+.page li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
-
 }
-
-
-.titleContainer{
-    background-color: #302E30;
+.imageAndTextWrapper{
     display: flex;
-    flex-direction: column;
-
-    padding: 20px;
-    margin: 15px;
+    align-items: center;
 }
-.cardTitle{
-    font-size: 24px;
-    color: tan;
-}
-.noteTask{
-    color: white;
-    font-size: 1.2rem;
-    margin: 10px 0;
+.imageAndTextWrapper span {
+    margin-left: 20px;
+    color: ivory;
+    font-size: 18px;
 }
 
-.buttonContainer{
-    margin-right: 15px;
+.imageComp button {
+    margin-right: 20px;
 }
 
 .deleteButton{
-    background-color:  #2d2d2d;
-    color:  #f64435;
-    font-size: 20px;
+    background-color:  #302E30;
     border: none;
+    color:  #f64435;
+    font-size: 18px;
 }
-
 
 /* 
  {
