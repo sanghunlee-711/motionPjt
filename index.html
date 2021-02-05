@@ -5,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MotionPJT</title>
     <script type="module" src ="build/app.js" defer></script>
+    <script type="module" src ="build/utility/utility.js" defer></script>
     <style></style>
     <link rel = "stylesheet" href = "style/index.css"></link>
 </head>
 <body>
+
     <main>
     <nav class = "navBar">
         <span id = "title">MOTION</span>
         <ul class ="navListWrapper">
-            <li>
+            <li class = "navList">
                 IMAGE
             </li>
-            <li>
+            <li class ="navList">
                 VIDEO
             </li>
-            <li>
+            <li class ="navList">
                 NOTE
             </li>
-            <li>
+            <li class ="navList">
                 TASK
             </li>
         </ul>
@@ -30,75 +32,6 @@
 
     <section class = "cardWrapper">
         <!--Note Sample-->
-        <div class = "cardContainer">
-            <div class = "titleContainer">
-                <span class = "cardTitle">
-                    sample of Note
-                </span>
-                <span class = "noteTask">
-                    task
-                </span>
-            </div>
-            <div class ="buttonContainer">
-                <!--Modify button will be added-->
-                <button class = "deleteButton">
-                    x
-                </button>
-            </div>
-        </div>
-        <!--Task Sample-->
-        <div class = "cardContainer">
-            <div class = "titleContainer" >
-                <span class = "cardTitle">
-                    sample of Task
-                </span>
-                <span class = "taskTask">
-                    task
-                </span>
-            </div>
-            <div class ="buttonContainer">
-                <!--Modify button will be added-->
-                <button class = "deleteButton">
-                    Delete
-                </button>
-            </div>
-        </div>
-
-        <!--Video Sample-->
-        <div class = "cardContainer">
-            <div class = "titleContainer">
-                <span class = "videoTitle">
-                    sample of Video
-                </span>
-                <span class = "videoTask">
-                    task
-                </span>
-            </div>
-            <div class ="buttonContainer">
-                <!--Modify button will be added-->
-                <button class = "deleteButton">
-                    Delete
-                </button>
-            </div>
-        </div>
-
-        <!--Image Sample-->
-        <div class = "cardContainer">
-            <div class = "titleContainer">
-                <span class = "imageTitle">
-                    sample of Image
-                </span>
-                <span class = "imageTask">
-                    task
-                </span>
-            </div>
-            <div class ="buttonContainer">
-                <!--Modify button will be added-->
-                <button class = "deleteButton">
-                    Delete
-                </button>
-            </div>
-        </div>
     </section>
 
     <footer>
