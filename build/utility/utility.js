@@ -20,7 +20,8 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
             .querySelector(".quitButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", function () {
             popUpInstance.quitpopUp();
         });
-        (_b = document.querySelector(".submitButton")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+        (_b = document
+            .querySelector(".submitButton")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
             const titleValue = document.querySelector(".inputTitle");
             const contentsValue = document.querySelector(".contentsInput");
             const whatContents = document.querySelector(".titleSpan");
@@ -41,7 +42,7 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
                     const newVideo = new VideoComponent(contentsValue.value, titleValue.value);
                     newVideo.makeComp(document.querySelector(".page"), "afterbegin");
                     break;
-                // case "TASK": 
+                // case "TASK":
                 // console.log("incodition");
                 // console.log(titleValue.value);
                 // console.log(contentsValue.value);
@@ -78,4 +79,24 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
         });
     });
 }
+const deleteButtons = document.querySelectorAll(".deleteButton");
+const targetWrapper = document.querySelector(".page");
+const targetWrapperChild = targetWrapper === null || targetWrapper === void 0 ? void 0 : targetWrapper.childNodes;
+const len = targetWrapperChild === null || targetWrapperChild === void 0 ? void 0 : targetWrapperChild.length;
+const deleteTarget = document.querySelectorAll(".element");
+window.onload = function () {
+    for (let i = 0; i < len; i++) {
+        //   window.onload = function () {
+        //     console.log(targetWrapper?.childNodes.length);
+        //   };
+        deleteButtons[i].addEventListener("click", (event) => {
+            const eTarget = event.target;
+            console.log(targetWrapper);
+            console.log(deleteTarget);
+            //gonna delete deleteTarget[i]
+            targetWrapper === null || targetWrapper === void 0 ? void 0 : targetWrapper.removeChild(deleteTarget[i]);
+        });
+    }
+};
+//deleteButton index랑 게시물 인덱스 같은거 지워버리자!
 //# sourceMappingURL=utility.js.map

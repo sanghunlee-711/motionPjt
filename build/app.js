@@ -18,9 +18,7 @@ imageComponent.makeComp(document.querySelector(".page"), "afterbegin");
 const noteComponent = new NoteComponent("Note Title", "Note Contets");
 noteComponent.makeComp(document.querySelector(".page"), "afterbegin");
 const videoComponent = new VideoComponent("https://www.youtube.com/watch?v=KvIfjyyl_E4", "Youtube!");
-window.onload = function () {
-    videoComponent.makeComp(document.querySelector(".page"), "afterbegin");
-};
+videoComponent.makeComp(document.querySelector(".page"), "afterbegin");
 const todoComponent = new TodoComponent("Todo Title!", [
     "할1",
     "할2",

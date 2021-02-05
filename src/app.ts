@@ -37,18 +37,15 @@ noteComponent.makeComp(
   "afterbegin"
 );
 
-
 const videoComponent = new VideoComponent(
   "https://www.youtube.com/watch?v=KvIfjyyl_E4",
   "Youtube!"
 );
 
-window.onload = function () {
-  videoComponent.makeComp(
-    document.querySelector(".page")! as HTMLElement,
-    "afterbegin"
-  );
-};
+videoComponent.makeComp(
+  document.querySelector(".page")! as HTMLElement,
+  "afterbegin"
+);
 
 const todoComponent = new TodoComponent("Todo Title!", [
   "할1",

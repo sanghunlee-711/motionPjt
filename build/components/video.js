@@ -15,6 +15,7 @@ export class VideoComponent {
         this.deleteButton = document.createElement("button");
         this.deleteButton.textContent = "X";
         this.deleteButton.setAttribute("class", "deleteButton");
+        // this.deleteButton.addEventListener("click", this.remove);
         this.divWrapper.appendChild(this.element);
         this.divWrapper.innerHTML = this.itag;
         this.divWrapper.appendChild(this.spanEl);
@@ -37,6 +38,11 @@ export class VideoComponent {
             changed = url;
         }
         return changed;
+    }
+    remove() {
+        console.log("workd?");
+        const parent = document.querySelector(".page");
+        // this.element?.remove();
     }
 }
 //# sourceMappingURL=video.js.map

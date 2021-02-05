@@ -2,7 +2,7 @@ export class VideoComponent {
   private element: HTMLLIElement;
   private spanEl: HTMLSpanElement;
   private divWrapper: HTMLDivElement;
-  private deleteButton: HTMLButtonElement;
+  deleteButton: HTMLButtonElement;
 
   private itag: string;
   constructor(url: string, content: string) {
@@ -23,6 +23,7 @@ export class VideoComponent {
     this.deleteButton = document.createElement("button");
     this.deleteButton.textContent = "X";
     this.deleteButton.setAttribute("class", "deleteButton");
+    // this.deleteButton.addEventListener("click", this.remove);
 
     this.divWrapper.appendChild(this.element);
     this.divWrapper.innerHTML = this.itag;
@@ -48,5 +49,11 @@ export class VideoComponent {
     }
 
     return changed;
+  }
+  remove() {
+    console.log("workd?");
+    const parent = document.querySelector(".page");
+
+    // this.element?.remove();
   }
 }
