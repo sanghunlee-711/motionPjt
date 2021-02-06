@@ -1,18 +1,18 @@
-export class TodoComponent {
+export class TodoComponentImpl {
     constructor(title, toDos) {
         this.element = document.createElement("li");
-        this.element.setAttribute('class', 'element');
+        this.element.setAttribute("class", "element");
         this.todoContainer = document.createElement("div");
-        this.todoContainer.setAttribute('class', 'todoContainer');
+        this.todoContainer.setAttribute("class", "todoContainer");
         this.todoWrapper = document.createElement("ul");
-        this.todoWrapper.setAttribute('class', 'todoWrapper');
+        this.todoWrapper.setAttribute("class", "todoWrapper");
         this.todoList = toDos;
-        this.titleSpan = document.createElement('span');
-        this.titleSpan.setAttribute('class', 'toDoTitle');
+        this.titleSpan = document.createElement("span");
+        this.titleSpan.setAttribute("class", "toDoTitle");
         this.titleSpan.textContent = title;
         this.deleteButton = document.createElement("button");
         this.deleteButton.textContent = "X";
-        this.deleteButton.setAttribute('class', 'deleteButton');
+        this.deleteButton.setAttribute("class", "deleteButton");
         this.todoContainer.appendChild(this.titleSpan);
         this.todoContainer.appendChild(this.todoWrapper);
         this.element.appendChild(this.todoContainer);
@@ -23,13 +23,13 @@ export class TodoComponent {
         // 다시 그걸 받아서 map돌려서 내부에 작은 ul li로 만들어 내면 되겠군 ㅋ
     }
     makeTodo(todo) {
-        todo.forEach(el => {
+        todo.forEach((el) => {
             const alpha = document.createElement("li");
-            const checkbox = document.createElement('input');
-            const span = document.createElement('span');
-            checkbox.setAttribute('type', 'checkbox');
-            const wrapper = document.createElement('div');
-            alpha.setAttribute('class', 'todoList');
+            const checkbox = document.createElement("input");
+            const span = document.createElement("span");
+            checkbox.setAttribute("type", "checkbox");
+            const wrapper = document.createElement("div");
+            alpha.setAttribute("class", "todoList");
             span.innerText = el;
             alpha.appendChild(wrapper);
             wrapper.appendChild(checkbox);
@@ -37,10 +37,6 @@ export class TodoComponent {
             this.todoWrapper.appendChild(wrapper);
         });
         console.log(todo);
-    }
-    makeComp(parent, position = "afterbegin") {
-        this.makeTodo(this.todoList);
-        parent.insertAdjacentElement(position, this.element);
     }
 }
 //# sourceMappingURL=todo.js.map

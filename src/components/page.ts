@@ -28,4 +28,4 @@ export class PopUpComponent {
 }
 
 const click = new PopUpComponent();
-window.addEventListener("click", click.attachTo());
+// window.addEventListener("click", click.attachTo());

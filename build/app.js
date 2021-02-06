@@ -1,29 +1,40 @@
 import { PageComponent } from "./components/page.js";
-import { ImageComponent } from "./components/image.js";
-import { NoteComponent } from "./components/note.js";
-import { VideoComponent } from "./components/video.js";
-import { TodoComponent } from "./components/todo.js";
-class App {
+import { ImageComponentImpl } from "./components/image.js";
+import { NoteComponentEl } from "./components/note.js";
+import { VideoComponentImpl } from "./components/video.js";
+import { TodoComponentImpl } from "./components/todo.js";
+export class App {
     constructor(appRoot) {
         this.page = new PageComponent();
         this.page.attachTo(appRoot);
     }
+    makeAndDeleteComp(component) {
+        //make
+        const parent = document.querySelector(".page");
+        parent.insertAdjacentElement("afterbegin", component.element);
+        //delete
+        const deleteBtn = component.deleteButton;
+        console.log(deleteBtn);
+        deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener("click", function () {
+            parent.removeChild(component.element);
+        });
+    }
+    deleteComponent(component) {
+        // parent.removeChild(component.element);
+    }
 }
-//element | null return으로 ! as 로 강제해주자
-const newApp = new App(document.querySelector(".cardWrapper"));
-const imageComponent = new ImageComponent("Hello", "https://picsum.photos/250/250");
-//app class 에서 새로운 컴포넌트를 넣는 함수를 만들고 싶은데 흠..
-// newApp.makeComp(document.querySelector('.page')! as HTMLElement, 'afterbegin', imageComponent)
-imageComponent.makeComp(document.querySelector(".page"), "afterbegin");
-const noteComponent = new NoteComponent("Note Title", "Note Contets");
-noteComponent.makeComp(document.querySelector(".page"), "afterbegin");
-const videoComponent = new VideoComponent("https://www.youtube.com/watch?v=KvIfjyyl_E4", "Youtube!");
-videoComponent.makeComp(document.querySelector(".page"), "afterbegin");
-const todoComponent = new TodoComponent("Todo Title!", [
+export const newApp = new App(document.querySelector(".cardWrapper"));
+const imageComponent = new ImageComponentImpl("Hello", "https://picsum.photos/250/250");
+const noteComponent = new NoteComponentEl("Note Title", "Note Contets");
+const videoComponent = new VideoComponentImpl("https://www.youtube.com/watch?v=KvIfjyyl_E4", "Youtube!");
+const todoComponent = new TodoComponentImpl("Todo Title!", [
     "할1",
     "할2",
     "집가고싶다",
     "TS짱짱맨",
 ]);
-todoComponent.makeComp(document.querySelector(".page"), "afterbegin");
+newApp.makeAndDeleteComp(imageComponent);
+newApp.makeAndDeleteComp(noteComponent);
+newApp.makeAndDeleteComp(videoComponent);
+newApp.makeAndDeleteComp(todoComponent);
 //# sourceMappingURL=app.js.map

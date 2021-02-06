@@ -1,4 +1,4 @@
-export class PopUpComponent {
+export class PopUpComponentImpl {
     constructor(titleForInput, contentsForInput) {
         this.name = titleForInput;
         this.element = document.createElement("section");
@@ -37,7 +37,12 @@ export class PopUpComponent {
     }
     showPopUp(title, contents) {
         var _a;
-        const newPopUp = new PopUpComponent(title, contents);
+        console.log("wrok?");
+        const newPopUp = new PopUpComponentImpl(title, contents);
+        // const newApp = new App(
+        //   document.querySelector(".cardWrapper")! as HTMLElement
+        // );
+        // newApp.makeComponent(newPopUp);
         (_a = document
             .querySelector(".page")) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement("afterbegin", newPopUp.element);
     }

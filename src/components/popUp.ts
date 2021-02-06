@@ -1,13 +1,31 @@
-export class PopUpComponent {
-  private element: HTMLElement;
-  private name: string;
-  private titleWrapper: HTMLDivElement;
-  private titleSpan: HTMLSpanElement;
-  private contentWrapper: HTMLDivElement;
-  private inputTitle: HTMLInputElement;
-  private inputContents: HTMLInputElement;
-  private quitButton: HTMLButtonElement;
-  private submitButton: HTMLButtonElement;
+import { App } from "../app.js";
+
+export interface PopUpComponent {
+  element: HTMLElement;
+  name: string;
+  titleWrapper: HTMLDivElement;
+  titleSpan: HTMLSpanElement;
+  contentWrapper: HTMLDivElement;
+  inputTitle: HTMLInputElement;
+  inputContents: HTMLInputElement;
+  quitButton: HTMLButtonElement;
+  submitButton: HTMLButtonElement;
+  deleteButton?: HTMLButtonElement;
+
+  quitpopUp(): void;
+  showPopUp(title: string, contents: string): void;
+}
+
+export class PopUpComponentImpl implements PopUpComponent {
+  element: HTMLElement;
+  name: string;
+  titleWrapper: HTMLDivElement;
+  titleSpan: HTMLSpanElement;
+  contentWrapper: HTMLDivElement;
+  inputTitle: HTMLInputElement;
+  inputContents: HTMLInputElement;
+  quitButton: HTMLButtonElement;
+  submitButton: HTMLButtonElement;
   constructor(titleForInput: string, contentsForInput: string) {
     this.name = titleForInput;
     this.element = document.createElement("section");
@@ -42,15 +60,21 @@ export class PopUpComponent {
     this.element.appendChild(this.quitButton);
   }
 
-  quitpopUp() {
+  quitpopUp(): void {
     const parent = document.querySelector(".page");
     const child = document.querySelector(".popUpContainer");
     console.log(child);
     parent?.removeChild(child! as Node);
     // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
   }
-  showPopUp(title: string, contents: string) {
-    const newPopUp = new PopUpComponent(title, contents);
+  showPopUp(title: string, contents: string): void {
+    console.log("wrok?");
+    const newPopUp = new PopUpComponentImpl(title, contents);
+    // const newApp = new App(
+    //   document.querySelector(".cardWrapper")! as HTMLElement
+    // );
+
+    // newApp.makeComponent(newPopUp);
     document
       .querySelector(".page")
       ?.insertAdjacentElement("afterbegin", newPopUp.element);
