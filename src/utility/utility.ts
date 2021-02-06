@@ -29,16 +29,20 @@ for (let i = 0; i < navList.length; i++) {
         popUpInstance.quitpopUp();
       });
 
+    //e.target.value에러 참고
+    //https://stackoverflow.com/questions/44321326/property-value-does-not-exist-on-type-eventtarget-in-typescript
     document
       .querySelector(".submitButton")
       ?.addEventListener("click", function () {
-        const titleValue = document.querySelector(".inputTitle") as HTMLElement;
+        const titleValue = document.querySelector(
+          ".inputTitle"
+        ) as HTMLInputElement;
         const contentsValue = document.querySelector(
           ".contentsInput"
-        ) as HTMLElement;
+        ) as HTMLInputElement;
         const whatContents = document.querySelector(
           ".titleSpan"
-        ) as HTMLElement;
+        ) as HTMLInputElement;
 
         // whatContents에 따라 불러오는  instance변경하자.
         switch (whatContents.innerText.split(" ")[0]) {
