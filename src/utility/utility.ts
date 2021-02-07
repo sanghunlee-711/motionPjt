@@ -61,16 +61,17 @@ for (let i = 0; i < navList.length; i++) {
             newApp.makeAndDeleteComp(newVideo);
 
             break;
-          // case "TASK":
-          // console.log("incodition");
-          // console.log(titleValue.value);
-          // console.log(contentsValue.value);
-          //   const newImage = new TodoComponent(titleValue.value, contentsValue.value);
-          //   newImage.makeComp(
-          //     document.querySelector(".page")! as HTMLElement,
-          //     "afterbegin"
-          //   );
-          // break;
+          case "TASK":
+            console.log("incodition");
+            console.log(titleValue.value);
+            console.log(contentsValue.value);
+            const newTodo = new TodoComponentImpl(titleValue.value, [
+              "1",
+              "2",
+              "3",
+            ]);
+
+            break;
           case "NOTE":
             const newNote = new NoteComponentEl(
               titleValue.value,
