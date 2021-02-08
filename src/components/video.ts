@@ -1,7 +1,16 @@
-export class VideoComponent {
-  private element: HTMLLIElement;
-  private spanEl: HTMLSpanElement;
-  private divWrapper: HTMLDivElement;
+export interface VideoComponent {
+  element: HTMLLIElement;
+  spanEl: HTMLSpanElement;
+  divWrapper: HTMLDivElement;
+  deleteButton: HTMLButtonElement;
+  changeUrl(url: string): string;
+  remove(): void;
+}
+
+export class VideoComponentImpl implements VideoComponent {
+  element: HTMLLIElement;
+  spanEl: HTMLSpanElement;
+  divWrapper: HTMLDivElement;
   deleteButton: HTMLButtonElement;
 
   private itag: string;
@@ -32,9 +41,9 @@ export class VideoComponent {
 
     this.element.appendChild(this.deleteButton);
   }
-  makeComp(parent: HTMLElement, position: InsertPosition = "afterbegin") {
-    parent.insertAdjacentElement(position, this.element);
-  }
+  // makeComp(parent: HTMLElement, position: InsertPosition = "afterbegin") {
+  //   parent.insertAdjacentElement(position, this.element);
+  // }
 
   changeUrl(url: string): string {
     let changed: string = "";

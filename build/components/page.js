@@ -9,4 +9,17 @@ export class PageComponent {
         parent.insertAdjacentElement(position, this.element);
     }
 }
+export class PopUpComponent {
+    constructor() {
+        this.element = document.createElement("div");
+        this.element.setAttribute("class", "popUp");
+    }
+    attachTo(parent, position = "afterbegin") {
+        let input = document.createElement("input");
+        input.setAttribute("class", "input1");
+        parent.insertAdjacentElement(position, input);
+    }
+}
+const click = new PopUpComponent();
+// window.addEventListener("click", click.attachTo());
 //# sourceMappingURL=page.js.map

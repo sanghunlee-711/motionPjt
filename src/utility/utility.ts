@@ -34,7 +34,6 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
           popUpInstance.quitpopUp();
         });
 
-<<<<<<< HEAD
       document
         .querySelector(".submitButton")
         ?.addEventListener("click", function () {
@@ -75,52 +74,52 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
                 document.querySelector(".page")! as HTMLElement,
                 "afterbegin"
               );
+import { ImageComponentImpl } from "../components/image.js";
+import { NoteComponentEl } from "../components/note.js";
+import { VideoComponentImpl } from "../components/video.js";
+import { TodoComponentImpl } from "../components/todo.js";
+import { PopUpComponentImpl } from "../components/popUp.js";
+import { newApp } from "../app.js";
 
-              break;
-            // case "TASK":
-            // console.log("incodition");
-            // console.log(titleValue.value);
-            // console.log(contentsValue.value);
-            //   const newImage = new TodoComponent(titleValue.value, contentsValue.value);
-            //   newImage.makeComp(
-            //     document.querySelector(".page")! as HTMLElement,
-            //     "afterbegin"
-            //   );
-            // break;
-            case "NOTE":
-              console.log("incodition");
-              console.log(titleValue.value);
-              console.log(contentsValue.value);
-              const newNote = new NoteComponent(
-                titleValue.value,
-                contentsValue.value
-              );
-              newNote.makeComp(
-                document.querySelector(".page")! as HTMLElement,
-                "afterbegin"
-              );
-              break;
-            default:
-              throw new Error("what Happen??");
-          }
+//팝업 열기& 닫기
+console.log("HelloUtil");
+const navList: NodeListOf<Element> = document.querySelectorAll(".navList");
 
-          // if(whatContents.innerText.split(" ")[0] === 'IMAGE'){
-          //   console.log("incodition");
-          //   console.log(titleValue.value);
-          //   console.log(contentsValue.value);
-          //     const newImage = new ImageComponent(titleValue.value, contentsValue.value);
-          //     newImage.makeComp(
-          //       document.querySelector(".page")! as HTMLElement,
-          //       "afterbegin"
-          //     );
-          //   }
-          // const parent = document.querySelector(".page");
-          // parent?.insertAdjacentElement("afterbegin", inputEl);
+for (let i = 0; i < navList.length; i++) {
+  console.log("Hello for work");
+  navList[i].addEventListener("click", function (e) {
+    const input = e.target as HTMLElement;
+    let contentsInput: string = input?.innerText;
 
-          popUpInstance.quitpopUp();
-          console.log("Hello");
-        });
-=======
+    // youtube 일때, image 일때 contents input -> url
+    if (contentsInput === "VIDEO" || contentsInput === "IMAGE") {
+      contentsInput = "URL";
+    }
+    const popUpInstance = new PopUpComponentImpl(`Title`, `${contentsInput}`);
+
+    popUpInstance.showPopUp(`${input?.innerText!} TITLE`, `${contentsInput}`);
+
+    document
+      .querySelector(".quitButton")
+      ?.addEventListener("click", function () {
+        popUpInstance.quitpopUp();
+      });
+
+    //e.target.value에러 참고
+    //https://stackoverflow.com/questions/44321326/property-value-does-not-exist-on-type-eventtarget-in-typescript
+    document
+      .querySelector(".submitButton")
+      ?.addEventListener("click", function () {
+        const titleValue = document.querySelector(
+          ".inputTitle"
+        ) as HTMLInputElement;
+        const contentsValue = document.querySelector(
+          ".contentsInput"
+        ) as HTMLInputElement;
+        const whatContents = document.querySelector(
+          ".titleSpan"
+        ) as HTMLInputElement;
+
         //팝업 제출
       document.querySelector(".submitButton")?.addEventListener("click", function () {
         const titleValue = document.querySelector(".inputTitle") as HTMLElement;
@@ -177,29 +176,48 @@ for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
         console.log("Hello");
       });
 
->>>>>>> 90ff67f... Add: uitlity function
     });
 }
+        // whatContents에 따라 불러오는  instance변경하자.
+        switch (whatContents.innerText.split(" ")[0]) {
+          case "IMAGE":
+            const newImage = new ImageComponentImpl(
+              titleValue.value,
+              contentsValue.value
+            );
+            newApp.makeAndDeleteComp(newImage);
+            break;
+          case "VIDEO":
+            const newVideo = new VideoComponentImpl(
+              contentsValue.value,
+              titleValue.value
+            );
+            newApp.makeAndDeleteComp(newVideo);
 
-const deleteButtons = document.querySelectorAll(".deleteButton");
-const targetWrapper = document.querySelector(".page");
-const targetWrapperChild = targetWrapper?.childNodes;
-const len: number = targetWrapperChild?.length as number;
-const deleteTarget = document.querySelectorAll(".element");
+            break;
+          case "TASK":
+            console.log("incodition");
+            console.log(titleValue.value);
+            console.log(contentsValue.value);
+            const newTodo = new TodoComponentImpl(titleValue.value, [
+              "1",
+              "2",
+              "3",
+            ]);
 
-window.onload = function () {
-  for (let i: number = 0; i < len; i++) {
-    //   window.onload = function () {
-    //     console.log(targetWrapper?.childNodes.length);
-    //   };
-    deleteButtons[i].addEventListener("click", (event) => {
-      const eTarget = event.target as HTMLElement;
-      console.log(targetWrapper);
-      console.log(deleteTarget);
-      //gonna delete deleteTarget[i]
-      targetWrapper?.removeChild(deleteTarget[i]);
-    });
-  }
-};
+            break;
+          case "NOTE":
+            const newNote = new NoteComponentEl(
+              titleValue.value,
+              contentsValue.value
+            );
+            newApp.makeAndDeleteComp(newNote);
+            break;
+          default:
+            throw new Error("what Happen??");
+        }
 
-//deleteButton index랑 게시물 인덱스 같은거 지워버리자!
+        popUpInstance.quitpopUp();
+      });
+  });
+}

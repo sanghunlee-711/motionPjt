@@ -1,4 +1,4 @@
-export class PopUpComponent {
+export class PopUpComponentImpl {
     constructor(titleForInput, contentsForInput) {
         this.addTodo = document.createElement("button");
         this.name = titleForInput;
@@ -30,6 +30,7 @@ export class PopUpComponent {
         this.quitButton = document.createElement("button");
         this.quitButton.textContent = "X";
         this.quitButton.setAttribute("class", "quitButton");
+        this.newButton = document.createElement("button");
         this.element.appendChild(this.titleWrapper);
         this.element.appendChild(this.contentWrapper);
         this.element.appendChild(this.submitButton);
@@ -54,10 +55,32 @@ export class PopUpComponent {
         // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
     }
     showPopUp(title, contents) {
-        var _a;
-        const newPopUp = new PopUpComponent(title, contents);
-        (_a = document
-            .querySelector(".page")) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement("afterbegin", newPopUp.element);
+        var _a, _b;
+        console.log("wrok?");
+        const newPopUp = new PopUpComponentImpl(title, contents);
+        const titleOfNewPopUp = newPopUp.titleSpan.innerText.split(" ")[0];
+        console.log("newPopUp.titleSpan", titleOfNewPopUp);
+        if (titleOfNewPopUp === "TODO") {
+            console.log("Hellothere");
+            this.newButton.setAttribute("class", "addButton");
+            this.newButton.setAttribute("type", "submit");
+            this.element.insertAdjacentElement("afterbegin", this.newButton);
+            (_a = document
+                .querySelector(".addButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", this.addTodo);
+        }
+        (_b = document
+            .querySelector(".page")) === null || _b === void 0 ? void 0 : _b.insertAdjacentElement("afterbegin", newPopUp.element);
+    }
+    // only for Todo List
+    addButton(title) {
+        if (title === "TODO") {
+        }
+        else {
+            return;
+        }
+    }
+    addTodo() {
+        console.log("addTodod~!!");
     }
 }
 //# sourceMappingURL=popUp.js.map
