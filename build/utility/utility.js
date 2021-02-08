@@ -29,73 +29,46 @@ for (let i = 0; i < navList.length; i++) {
       : _a.addEventListener("click", function () {
           popUpInstance.quitpopUp();
         });
-    //e.target.value에러 참고
-    //https://stackoverflow.com/questions/44321326/property-value-does-not-exist-on-type-eventtarget-in-typescript
-    (_b = document.querySelector(".submitButton")) === null || _b === void 0
-      ? void 0
-      : _b.addEventListener("click", function () {
-          const titleValue = document.querySelector(".inputTitle");
-          const contentsValue = document.querySelector(".contentsInput");
-          const whatContents = document.querySelector(".titleSpan");
-          // whatContents에 따라 불러오는  instance변경하자.
-          switch (whatContents.innerText.split(" ")[0]) {
-            case "IMAGE":
-              const newImage = new ImageComponentImpl(
-                titleValue.value,
-                contentsValue.value
-              );
-              newApp.makeAndDeleteComp(newImage);
-              break;
-            case "VIDEO":
-              const newVideo = new VideoComponentImpl(
-                contentsValue.value,
-                titleValue.value
-              );
-              newApp.makeAndDeleteComp(newVideo);
-              break;
-            case "TASK":
-              console.log("incodition");
-              console.log(titleValue.value);
-              console.log(contentsValue.value);
-              const newTodo = new TodoComponentImpl(titleValue.value, [
-                "1",
-                "2",
-                "3",
-              ]);
-              break;
-
-            // case "TASK":
-            // console.log("incodition");
-            // console.log(titleValue.value);
-            // console.log(contentsValue.value);
-            //   const newImage = new TodoComponent(titleValue.value, contentsValue.value);
-            //   newImage.makeComp(
-            //     document.querySelector(".page")! as HTMLElement,
-            //     "afterbegin"
-            //   );
-            // break;
-            case "TASK":
-              console.log("incodition");
-              console.log(titleValue.value);
-              console.log(contentsValue.value);
-              const newTask = new TodoComponent(
-                titleValue.value,
-                contentsValue.value
-              );
-              newTask.makeComp(document.querySelector(".page"), "afterbegin");
-              break;
-
-            case "NOTE":
-              const newNote = new NoteComponentEl(
-                titleValue.value,
-                contentsValue.value
-              );
-              newApp.makeAndDeleteComp(newNote);
-              break;
-            default:
-              throw new Error("what Happen??");
-          }
-          popUpInstance.quitpopUp();
+        //e.target.value에러 참고
+        //https://stackoverflow.com/questions/44321326/property-value-does-not-exist-on-type-eventtarget-in-typescript
+        (_b = document
+            .querySelector(".submitButton")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", function () {
+            console.log("clickSubmit");
+            const titleValue = document.querySelector(".inputTitle");
+            const contentsValue = document.querySelector(".contentsInput");
+            const whatContents = document.querySelector(".titleSpan");
+            const contentsValueforTodo = document.querySelectorAll(".contentsInput");
+            if (titleValue.value.length <= 1 || contentsValue.value.length <= 1) {
+                alert("제대로 입력해라 ..");
+            }
+            // whatContents에 따라 불러오는  instance변경하자.
+            switch (whatContents.innerText.split(" ")[0]) {
+                case "IMAGE":
+                    const newImage = new ImageComponentImpl(titleValue.value, contentsValue.value);
+                    newApp.makeAndDeleteComp(newImage);
+                    break;
+                case "VIDEO":
+                    const newVideo = new VideoComponentImpl(contentsValue.value, titleValue.value);
+                    newApp.makeAndDeleteComp(newVideo);
+                    break;
+                case "TODO":
+                    console.log("TODO!");
+                    let todoArr = [];
+                    for (let i = 0; i < contentsValueforTodo.length; i++) {
+                        console.log(contentsValueforTodo[i].value);
+                        todoArr.push(contentsValueforTodo[i].value);
+                    }
+                    const newTodo = new TodoComponentImpl(titleValue.value, todoArr);
+                    newApp.makeAndDeleteComp(newTodo);
+                    break;
+                case "NOTE":
+                    const newNote = new NoteComponentEl(titleValue.value, contentsValue.value);
+                    newApp.makeAndDeleteComp(newNote);
+                    break;
+                default:
+                    throw new Error("what Happen??");
+            }
+            popUpInstance.quitpopUp();
         });
   });
 }

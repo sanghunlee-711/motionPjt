@@ -90,6 +90,7 @@ footer a{
     align-items: center;
     min-height: 250px;
     max-height: 250px;
+    margin: 2vh 0;
 }
 
 
@@ -108,15 +109,17 @@ footer a{
     display: flex;
     align-items: center;
 }
+
+.imageAndTextWrapper img{
+    width: 500px;
+    height: 250px;
+}
 .imageAndTextWrapper span {
     margin-left: 20px;
     color: ivory;
     font-size: 18px;
 }
-.imageAndTextWrapper img{
-    width: 100%;
-    height: 100%;
-}
+
 
 
 
@@ -148,7 +151,7 @@ footer a{
     margin: 10px;
 }
 
-.todoWrapper span{
+.todoItem{
     margin-left: 20px;
     color: white;
 }
@@ -186,18 +189,65 @@ footer a{
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background: rgba(123, 120, 120, 0.3) /* Green background with 30% opacity */
+
 }
+
+.popUpWrapper{
+    display: flex;
+    flex-direction: column;
+    background-color: #5B5A5B;
+    width: 45vw;
+    padding: 1vw;
+    position: relative;
+    opacity: 1;
+}
+.popUpWrapper div{
+    display: flex;
+    flex-direction: column;}
+
+.popUpWrapper input{
+    height: 4vh;
+    margin: 1vh;
+    background-color: rgba(123, 120, 120, 0.3);
+    color: white;
+}
+.popUpWrapper span{
+    margin: 1vh;
+    color: yellow;
+}
+
+.submitButton{
+    margin: 1vh;
+    height: 4vh;
+    background-color: #f64435;
+    color: white;
+    border:none;
+}
+
+.addTodoButton{
+    margin: 1vh;
+    height: 4vh;
+    background-color: #f64435;
+    color: white;
+    border:none;
+
+}
+
 
 .quitButton {
     position: absolute;
     right: 30px;
     top: 30px;
+    background-color: #f64435;
+    color: white;
+    border:none;
 }
 
 .dissaper{
     display: none;
 }
+
 /* 
  {
 

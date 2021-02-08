@@ -110,6 +110,7 @@ for (let i = 0; i < navList.length; i++) {
     document
       .querySelector(".submitButton")
       ?.addEventListener("click", function () {
+        console.log("clickSubmit")
         const titleValue = document.querySelector(
           ".inputTitle"
         ) as HTMLInputElement;
@@ -120,64 +121,12 @@ for (let i = 0; i < navList.length; i++) {
           ".titleSpan"
         ) as HTMLInputElement;
 
-        //팝업 제출
-      document.querySelector(".submitButton")?.addEventListener("click", function () {
-        const titleValue = document.querySelector(".inputTitle") as HTMLElement;
-        const contentsValue = document.querySelector(".contentsInput") as HTMLElement;
-        const whatContents = document.querySelector(".titleSpan") as HTMLElement;
-        console.log(whatContents.innerText.split(" ")[0]);
-        // whatContents에 따라 불러오는  instance변경하자.
-        switch(whatContents.innerText.split(" ")[0]){
-          case "IMAGE":
-          console.log("incodition");
-          console.log(titleValue.value);
-          console.log(contentsValue.value);
-            const newImage = new ImageComponent(titleValue.value, contentsValue.value);
-            newImage.makeComp(
-              document.querySelector(".page")! as HTMLElement,
-              "afterbegin"
-            );
-          break;
-          case "VIDEO": 
-          console.log("incodition");
-          console.log(titleValue.value);
-          console.log(contentsValue.value);
-            const newVideo = new VideoComponent(contentsValue.value, titleValue.value);
-            newVideo.makeComp(
-              document.querySelector(".page")! as HTMLElement,
-              "afterbegin"
-            );
-          break;
-          case "TASK": 
-          console.log("incodition");
-          console.log(titleValue.value);
-          console.log(contentsValue.value);
-            const newTask = new TodoComponent(titleValue.value, contentsValue.value);
-            newTask.makeComp(
-              document.querySelector(".page")! as HTMLElement,
-              "afterbegin"
-            );
-          break;
-          case "NOTE": 
-          console.log("incodition");
-          console.log(titleValue.value);
-          console.log(contentsValue.value);
-            const newNote = new NoteComponent(titleValue.value, contentsValue.value);
-            newNote.makeComp(
-              document.querySelector(".page")! as HTMLElement,
-              "afterbegin"
-            );
-          break;
-          default:
-            throw new Error("what Happen??")
-        }
-
-        popUpInstance.quitpopUp();
-        console.log("Hello");
-      });
-
-    });
-}
+        const contentsValueforTodo = document.querySelectorAll(
+          ".contentsInput"
+        ) as NodeListOf<HTMLInputElement>;
+          if(titleValue.value.length <= 1 || contentsValue.value.length <= 1){
+            alert("제대로 입력해라 ..")
+          }
         // whatContents에 따라 불러오는  instance변경하자.
         switch (whatContents.innerText.split(" ")[0]) {
           case "IMAGE":
@@ -193,18 +142,17 @@ for (let i = 0; i < navList.length; i++) {
               titleValue.value
             );
             newApp.makeAndDeleteComp(newVideo);
-
             break;
-          case "TASK":
-            console.log("incodition");
-            console.log(titleValue.value);
-            console.log(contentsValue.value);
-            const newTodo = new TodoComponentImpl(titleValue.value, [
-              "1",
-              "2",
-              "3",
-            ]);
+          case "TODO":
+              console.log("TODO!");
+              let todoArr = [];
+              for(let i =0; i < contentsValueforTodo.length ; i ++){
+                console.log(contentsValueforTodo[i].value)
+                todoArr.push(contentsValueforTodo[i].value)
+              }
 
+            const newTodo = new TodoComponentImpl(titleValue.value, todoArr);
+            newApp.makeAndDeleteComp(newTodo);
             break;
           case "NOTE":
             const newNote = new NoteComponentEl(

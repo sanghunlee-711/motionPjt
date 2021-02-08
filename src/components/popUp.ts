@@ -12,7 +12,7 @@ export interface PopUpComponent {
   submitButton: HTMLButtonElement;
   deleteButton?: HTMLButtonElement;
   newButton?: HTMLButtonElement;
-
+  contentsTitle?: HTMLSpanElement;
   quitpopUp(): void;
   showPopUp(title: string, contents: string): void;
 }
@@ -20,14 +20,17 @@ export interface PopUpComponent {
 export class PopUpComponentImpl implements PopUpComponent {
   element: HTMLElement;
   name: string;
+  popupWrapper:HTMLDivElement;
   titleWrapper: HTMLDivElement;
   titleSpan: HTMLSpanElement;
   contentWrapper: HTMLDivElement;
   inputTitle: HTMLInputElement;
+  todoWrapper: HTMLDivElement;
   inputContents: HTMLInputElement;
   quitButton: HTMLButtonElement;
   submitButton: HTMLButtonElement;
-  newButton: HTMLButtonElement;
+  contentsTitle: HTMLSpanElement;
+  newButton: HTMLButtonElement = document.createElement("button");
   constructor(titleForInput: string, contentsForInput: string) {
     this.name = titleForInput;
     this.element = document.createElement("section");
@@ -40,6 +43,11 @@ export class PopUpComponentImpl implements PopUpComponent {
     this.titleSpan.textContent = titleForInput;
     this.titleWrapper.appendChild(this.titleSpan);
     this.titleWrapper.appendChild(this.inputTitle);
+    
+    this.popupWrapper = document.createElement("div");
+    this.popupWrapper.setAttribute("class","popUpWrapper");
+
+
 
     if (titleForInput === "TASK TITLE") {
       this.addTodo.setAttribute("type", "submit");
@@ -48,11 +56,21 @@ export class PopUpComponentImpl implements PopUpComponent {
     }
 
     this.contentWrapper = document.createElement("div");
-    this.contentWrapper.setAttribute("class", "todoWrapper");
+    this.contentWrapper.setAttribute('class','contentWrapper')
     this.inputContents = document.createElement("input");
     this.inputContents.setAttribute("class", "contentsInput");
-    this.contentWrapper.textContent = contentsForInput;
-    this.contentWrapper.appendChild(this.inputContents);
+    this.inputContents.setAttribute("type", "text");
+
+    this.todoWrapper = document.createElement("div");
+    this.todoWrapper.setAttribute("class","todoWrapper");
+    this.contentsTitle = document.createElement("span");
+    this.contentsTitle.setAttribute("class","titleSpan");
+    this.contentsTitle.textContent = contentsForInput;
+
+
+    this.todoWrapper.appendChild(this.contentsTitle);
+    this.todoWrapper.appendChild(this.inputContents);
+
 
     this.submitButton = document.createElement("button");
     this.submitButton.setAttribute("class", "submitButton");
@@ -64,24 +82,32 @@ export class PopUpComponentImpl implements PopUpComponent {
     this.quitButton.setAttribute("class", "quitButton");
     this.newButton = document.createElement("button");
 
-    this.element.appendChild(this.titleWrapper);
-    this.element.appendChild(this.contentWrapper);
-    this.element.appendChild(this.submitButton);
-    this.element.appendChild(this.quitButton);
-    if (titleForInput === "TASK TITLE") {
-      this.element.appendChild(this.addTodo);
+    this.popupWrapper.appendChild(this.titleWrapper);
+
+    if(titleForInput === "TODO TITLE"){
+      console.log("Task?")
+      this.newButton.setAttribute("type", "submit");
+      this.newButton.textContent = "Add";
+      this.newButton.setAttribute("class","addTodoButton");
+      this.popupWrapper.appendChild(this.newButton);
+
+      this.newButton.addEventListener("click", function(){
+        console.log("Add Btn")
+        const newInput = document.createElement("input");
+        newInput.setAttribute("type", "text");
+        newInput.setAttribute("class","contentsInput");
+        document.querySelector(".todoWrapper")?.appendChild(newInput);
+      })
     }
+
+    this.element.appendChild(this.popupWrapper);
+    this.popupWrapper.appendChild(this.todoWrapper);
+    this.popupWrapper.appendChild(this.quitButton);
+    this.popupWrapper.appendChild(this.submitButton);
+
   }
 
-  makeTodo() {
-    let parent = document.querySelector("todoWrapper");
-    let newOne = document.createElement("input");
-    console.log(parent?.childNodes.length);
-    newOne.setAttribute("type", "text");
-    newOne.setAttribute("class", "newTodo");
 
-    parent?.insertAdjacentElement("afterbegin", newOne);
-  }
 
   quitpopUp(): void {
     const parent = document.querySelector(".page");
@@ -91,28 +117,24 @@ export class PopUpComponentImpl implements PopUpComponent {
     // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
   }
   showPopUp(title: string, contents: string): void {
-    console.log("wrok?");
+    console.log("show Pop UP!");
     const newPopUp = new PopUpComponentImpl(title, contents);
-    const titleOfNewPopUp = newPopUp.titleSpan.innerText.split(" ")[0];
-
-    console.log("newPopUp.titleSpan", titleOfNewPopUp);
-
-    if (titleOfNewPopUp === "TODO") {
-      console.log("Hellothere");
-
-      this.newButton.setAttribute("class", "addButton");
-      this.newButton.setAttribute("type", "submit");
-      this.element.insertAdjacentElement("afterbegin", this.newButton);
-
-      document
-        .querySelector(".addButton")
-        ?.addEventListener("click", this.addTodo);
-    }
 
     document
       .querySelector(".page")
       ?.insertAdjacentElement("afterbegin", newPopUp.element);
   }
+
+  makeTodo(){
+    let parent = document.querySelector("todoWrapper")
+    let newOne = document.createElement('input');
+    console.log(parent?.childNodes.length);
+    newOne.setAttribute('type', 'text');
+    newOne.setAttribute('class', 'newTodo');
+
+    parent?.insertAdjacentElement("afterbegin",newOne);
+  }
+
   // only for Todo List
   addButton(title: string): void {
     if (title === "TODO") {
