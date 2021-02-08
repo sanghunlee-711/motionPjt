@@ -1,4 +1,4 @@
-export class VideoComponent {
+export class VideoComponentImpl {
     constructor(url, content) {
         this.element = document.createElement("li");
         this.element.setAttribute("class", "element");
@@ -22,9 +22,9 @@ export class VideoComponent {
         this.element.appendChild(this.divWrapper);
         this.element.appendChild(this.deleteButton);
     }
-    makeComp(parent, position = "afterbegin") {
-        parent.insertAdjacentElement(position, this.element);
-    }
+    // makeComp(parent: HTMLElement, position: InsertPosition = "afterbegin") {
+    //   parent.insertAdjacentElement(position, this.element);
+    // }
     changeUrl(url) {
         let changed = "";
         if (url.includes("watch")) {
