@@ -22,7 +22,6 @@ export class PopUpComponent {
   attachTo(parent: HTMLElement, position: InsertPosition = "afterbegin") {
     let input = document.createElement("input");
     input.setAttribute("class", "input1");
-
     parent.insertAdjacentElement(position, input);
   }
 }

@@ -1,79 +1,3 @@
-import { PageComponent } from "../components/page.js";
-import { ImageComponent } from "../components/image.js";
-import { NoteComponent } from "../components/note.js";
-import { VideoComponent } from "../components/video.js";
-import { TodoComponent } from "../components/todo.js";
-import { PopUpComponent } from "../components/popUp.js";
-
-
-for (let i = 0; i < document.querySelectorAll(".navList").length; i++) {
-  document
-    .querySelectorAll(".navList")
-    [i].addEventListener("click", function (e) {
-      const input = e.target as HTMLElement;
-      let titleInput: string = input?.innerText;
-      let contentsInput: string = input?.innerText;
-
-      //팝업 열기
-      if(contentsInput === "VIDEO" || contentsInput === "IMAGE"){
-        contentsInput = "URL";
-      }
-      const popUpInstance = new PopUpComponent(
-        `${input?.innerText!} TITLE`,
-        `${contentsInput}`
-      );
-      popUpInstance.showPopUp(
-        `${input?.innerText!} TITLE`,
-        `${contentsInput}`
-      );
-
-      //팝업 닫기
-      document
-        .querySelector(".quitButton")
-        ?.addEventListener("click", function () {
-          popUpInstance.quitpopUp();
-        });
-
-      document
-        .querySelector(".submitButton")
-        ?.addEventListener("click", function () {
-          const titleValue = document.querySelector(
-            ".inputTitle"
-          ) as HTMLElement;
-          const contentsValue = document.querySelector(
-            ".contentsInput"
-          ) as HTMLElement;
-          const whatContents = document.querySelector(
-            ".titleSpan"
-          ) as HTMLElement;
-          console.log(whatContents.innerText.split(" ")[0]);
-          // whatContents에 따라 불러오는  instance변경하자.
-          switch (whatContents.innerText.split(" ")[0]) {
-            case "IMAGE":
-              console.log("incodition");
-              console.log(titleValue.value);
-              console.log(contentsValue.value);
-              const newImage = new ImageComponent(
-                titleValue.value,
-                contentsValue.value
-              );
-              newImage.makeComp(
-                document.querySelector(".page")! as HTMLElement,
-                "afterbegin"
-              );
-              break;
-            case "VIDEO":
-              console.log("incodition");
-              console.log(titleValue.value);
-              console.log(contentsValue.value);
-              const newVideo = new VideoComponent(
-                contentsValue.value,
-                titleValue.value
-              );
-              newVideo.makeComp(
-                document.querySelector(".page")! as HTMLElement,
-                "afterbegin"
-              );
 import { ImageComponentImpl } from "../components/image.js";
 import { NoteComponentEl } from "../components/note.js";
 import { VideoComponentImpl } from "../components/video.js";
@@ -81,12 +5,10 @@ import { TodoComponentImpl } from "../components/todo.js";
 import { PopUpComponentImpl } from "../components/popUp.js";
 import { newApp } from "../app.js";
 
-//팝업 열기& 닫기
-console.log("HelloUtil");
+//팝업 열기& 닫기 & 제출
 const navList: NodeListOf<Element> = document.querySelectorAll(".navList");
 
 for (let i = 0; i < navList.length; i++) {
-  console.log("Hello for work");
   navList[i].addEventListener("click", function (e) {
     const input = e.target as HTMLElement;
     let contentsInput: string = input?.innerText;
@@ -135,6 +57,8 @@ for (let i = 0; i < navList.length; i++) {
               contentsValue.value
             );
             newApp.makeAndDeleteComp(newImage);
+            newApp.dragAndDrop(newImage);
+
             break;
           case "VIDEO":
             const newVideo = new VideoComponentImpl(
@@ -142,6 +66,8 @@ for (let i = 0; i < navList.length; i++) {
               titleValue.value
             );
             newApp.makeAndDeleteComp(newVideo);
+            newApp.dragAndDrop(newVideo);
+
             break;
           case "TODO":
               console.log("TODO!");
@@ -153,6 +79,8 @@ for (let i = 0; i < navList.length; i++) {
 
             const newTodo = new TodoComponentImpl(titleValue.value, todoArr);
             newApp.makeAndDeleteComp(newTodo);
+            newApp.dragAndDrop(newTodo);
+
             break;
           case "NOTE":
             const newNote = new NoteComponentEl(
@@ -160,6 +88,7 @@ for (let i = 0; i < navList.length; i++) {
               contentsValue.value
             );
             newApp.makeAndDeleteComp(newNote);
+            newApp.dragAndDrop(newNote);
             break;
           default:
             throw new Error("what Happen??");

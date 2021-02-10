@@ -2,6 +2,7 @@ export class TodoComponentImpl {
     constructor(title, toDos) {
         this.element = document.createElement("li");
         this.element.setAttribute("class", "element");
+        this.element.setAttribute("draggable", "true");
         this.todoContainer = document.createElement("div");
         this.todoContainer.setAttribute("class", "todoContainer");
         this.todoWrapper = document.createElement("ul");

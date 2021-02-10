@@ -2,6 +2,7 @@ export class NoteComponentEl {
     constructor(title, content) {
         this.element = document.createElement("li");
         this.element.setAttribute("class", "element");
+        this.element.setAttribute("draggable", "true");
         this.wrapper = document.createElement("div");
         this.wrapper.setAttribute("class", "noteTitleWrapper");
         this.titleEl = document.createElement("span");
