@@ -34,34 +34,52 @@ export class App {
   }
 
   dragAndDrop(component: ComponentType):void{
-    const parent: HTMLElement = document.querySelector(".page") as HTMLElement;
+    const parent: HTMLElement = document.querySelector(".page") as HTMLUListElement;
     const element = component.element;
-    element.addEventListener('dragstart',function(){
+    let pickEl: HTMLElement;
+    let overEl: HTMLElement;
+    element.addEventListener('dragstart',function(event){
+      const eventTarget = event.target as HTMLElement;
+      pickEl = eventTarget;
       console.log("dragstart element");
     })
 
     element.addEventListener('dragend',function(event){
-      console.log("dragend");
-      const eventTarget = event.target as HTMLElement;
-      const parentNode = eventTarget.parentNode as HTMLElement;
+      const eventTarget = event.target! as HTMLLIElement;
 
-      if (eventTarget.className == "element") {
-        eventTarget.style.background = "red";
-        // parent.removeChild( element );
-        // parent.insertAdjacentElement("beforebegin", element );
+      if(eventTarget.className === "element"){
+        console.log("dragend", eventTarget.childNodes.values);
+        // eventTarget.style.border = "1px solid black";
       }
+
+      if(overEl !== pickEl){
+        pickEl.style.transition ="all 0.5s ease-in-out";
+        overEl.style.transition ="all 0.5s ease-in-out";
+
+        parent.insertBefore(pickEl, overEl);
+
+      }
+      console.log("overEl",overEl, "pickEl",pickEl);
+    })
+    
+    parent.addEventListener('dragover',function(event){
+      const eventTarget = event.target! as HTMLLIElement;
+
+      if(eventTarget.className === "element"){
+        eventTarget.style.border = "1px solid white";
+        overEl = eventTarget;
+        console.log("dragover", eventTarget.innerText);
+      }
+      setTimeout(function() {
+        eventTarget.style.border = "none";
+        
+      }, 500);
+
     })
 
-    // element.addEventListener('dragover',function(event){
-    //   console.log("dragover",element);
-    // },false)
     element.addEventListener('drop',function(event){
-      console.log("drop",element);
+      console.log("drop@@@")
 
-    })
-
-    element.addEventListener("dragleave",function(){
-      console.log("dragleave")
     })
     //click되면 해당 컴포넌트가 픽되고..
     //parent에서 ..
