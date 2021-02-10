@@ -50,7 +50,9 @@ export class App {
                 console.log("dragover", eventTarget.innerText);
             }
             setTimeout(function () {
-                eventTarget.style.border = "none";
+                if (eventTarget.className === "element") {
+                    eventTarget.style.border = "1px solid black";
+                }
             }, 500);
         });
         element.addEventListener('drop', function (event) {
