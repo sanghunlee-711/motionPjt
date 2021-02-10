@@ -49,11 +49,11 @@ export class PopUpComponentImpl implements PopUpComponent {
 
 
 
-    if (titleForInput === "TASK TITLE") {
-      this.addTodo.setAttribute("type", "submit");
-      this.addTodo.textContent = "Add";
-      this.addTodo.setAttribute("class", "addTodoButton");
-    }
+    // if (titleForInput === "TASK TITLE") {
+    //   this.addTodo.setAttribute("type", "submit");
+    //   this.addTodo.textContent = "Add";
+    //   this.addTodo.setAttribute("class", "addTodoButton");
+    // }
 
     this.contentWrapper = document.createElement("div");
     this.contentWrapper.setAttribute('class','contentWrapper')
@@ -142,7 +142,5 @@ export class PopUpComponentImpl implements PopUpComponent {
       return;
     }
   }
-  addTodo() {
-    console.log("addTodod~!!");
-  }
+
 }

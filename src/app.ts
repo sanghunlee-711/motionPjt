@@ -33,8 +33,38 @@ export class App {
     });
   }
 
-  drageAndDrop(component: ComponentType):void{
-    
+  dragAndDrop(component: ComponentType):void{
+    const parent: HTMLElement = document.querySelector(".page") as HTMLElement;
+    const element = component.element;
+    element.addEventListener('dragstart',function(){
+      console.log("dragstart element");
+    })
+
+    element.addEventListener('dragend',function(event){
+      console.log("dragend");
+      const eventTarget = event.target as HTMLElement;
+      const parentNode = eventTarget.parentNode as HTMLElement;
+
+      if (eventTarget.className == "element") {
+        eventTarget.style.background = "red";
+        // parent.removeChild( element );
+        // parent.insertAdjacentElement("beforebegin", element );
+      }
+    })
+
+    // element.addEventListener('dragover',function(event){
+    //   console.log("dragover",element);
+    // },false)
+    element.addEventListener('drop',function(event){
+      console.log("drop",element);
+
+    })
+
+    element.addEventListener("dragleave",function(){
+      console.log("dragleave")
+    })
+    //click되면 해당 컴포넌트가 픽되고..
+    //parent에서 ..
   }
 }
 
@@ -63,3 +93,7 @@ newApp.makeAndDeleteComp(imageComponent);
 newApp.makeAndDeleteComp(noteComponent);
 newApp.makeAndDeleteComp(videoComponent);
 newApp.makeAndDeleteComp(todoComponent);
+newApp.dragAndDrop(imageComponent);
+newApp.dragAndDrop(noteComponent);
+newApp.dragAndDrop(videoComponent);
+newApp.dragAndDrop(todoComponent);

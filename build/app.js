@@ -19,8 +19,33 @@ export class App {
             parent.removeChild(component.element);
         });
     }
-    deleteComponent(component) {
-        // parent.removeChild(component.element);
+    dragAndDrop(component) {
+        const parent = document.querySelector(".page");
+        const element = component.element;
+        element.addEventListener('dragstart', function () {
+            console.log("dragstart element");
+        });
+        element.addEventListener('dragend', function (event) {
+            console.log("dragend");
+            const eventTarget = event.target;
+            const parentNode = eventTarget.parentNode;
+            if (eventTarget.className == "element") {
+                eventTarget.style.background = "red";
+                // parent.removeChild( element );
+                // parent.insertAdjacentElement("beforebegin", element );
+            }
+        });
+        // element.addEventListener('dragover',function(event){
+        //   console.log("dragover",element);
+        // },false)
+        element.addEventListener('drop', function (event) {
+            console.log("drop", element);
+        });
+        element.addEventListener("dragleave", function () {
+            console.log("dragleave");
+        });
+        //click되면 해당 컴포넌트가 픽되고..
+        //parent에서 ..
     }
 }
 export const newApp = new App(document.querySelector(".cardWrapper"));
@@ -37,4 +62,8 @@ newApp.makeAndDeleteComp(imageComponent);
 newApp.makeAndDeleteComp(noteComponent);
 newApp.makeAndDeleteComp(videoComponent);
 newApp.makeAndDeleteComp(todoComponent);
+newApp.dragAndDrop(imageComponent);
+newApp.dragAndDrop(noteComponent);
+newApp.dragAndDrop(videoComponent);
+newApp.dragAndDrop(todoComponent);
 //# sourceMappingURL=app.js.map

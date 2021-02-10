@@ -19,6 +19,8 @@ export class TodoComponentImpl implements TodoComponent {
   constructor(title: string, toDos: Array<string>) {
     this.element = document.createElement("li");
     this.element.setAttribute("class", "element");
+    this.element.setAttribute("draggable", "true");
+
     this.todoContainer = document.createElement("div");
     this.todoContainer.setAttribute("class", "todoContainer");
     this.todoWrapper = document.createElement("ul");

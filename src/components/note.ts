@@ -16,6 +16,7 @@ export class NoteComponentEl implements NoteComponent {
   constructor(title: string, content: string) {
     this.element = document.createElement("li");
     this.element.setAttribute("class", "element");
+    this.element.setAttribute("draggable", "true");
 
     this.wrapper = document.createElement("div");
     this.wrapper.setAttribute("class", "noteTitleWrapper");

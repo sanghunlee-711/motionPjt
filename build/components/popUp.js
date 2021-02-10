@@ -14,6 +14,11 @@ export class PopUpComponentImpl {
         this.titleWrapper.appendChild(this.inputTitle);
         this.popupWrapper = document.createElement("div");
         this.popupWrapper.setAttribute("class", "popUpWrapper");
+        // if (titleForInput === "TASK TITLE") {
+        //   this.addTodo.setAttribute("type", "submit");
+        //   this.addTodo.textContent = "Add";
+        //   this.addTodo.setAttribute("class", "addTodoButton");
+        // }
         this.contentWrapper = document.createElement("div");
         this.contentWrapper.setAttribute('class', 'contentWrapper');
         this.inputContents = document.createElement("input");
@@ -84,9 +89,6 @@ export class PopUpComponentImpl {
         else {
             return;
         }
-    }
-    addTodo() {
-        console.log("addTodod~!!");
     }
 }
 //# sourceMappingURL=popUp.js.map

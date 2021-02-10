@@ -2,6 +2,7 @@ export class VideoComponentImpl {
     constructor(url, content) {
         this.element = document.createElement("li");
         this.element.setAttribute("class", "element");
+        this.element.setAttribute("draggable", "true");
         this.spanEl = document.createElement("span");
         this.divWrapper = document.createElement("div");
         this.divWrapper.setAttribute("class", "videoWrapper");

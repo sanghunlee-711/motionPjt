@@ -1,4 +1,4 @@
-import { BaseComponent } from './../../component';
+import { BaseComponent } from './../../component.js';
 export class MediaSectionInput extends BaseComponent {
     constructor() {
         super(`<div>

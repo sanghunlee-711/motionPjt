@@ -17,6 +17,8 @@ export class VideoComponentImpl implements VideoComponent {
   constructor(url: string, content: string) {
     this.element = document.createElement("li");
     this.element.setAttribute("class", "element");
+    this.element.setAttribute("draggable", "true");
+
 
     this.spanEl = document.createElement("span");
     this.divWrapper = document.createElement("div");

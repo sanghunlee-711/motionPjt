@@ -19,8 +19,14 @@ export class App {
             parent.removeChild(component.element);
         });
     }
-    deleteComponent(component) {
-        // parent.removeChild(component.element);
+    drageAndDrop(component) {
+        const parent = document.querySelector(".page");
+        const element = component.element;
+        element.addEventListener('click', function () {
+            console.log("drageAndDrop element", element);
+        });
+        //click되면 해당 컴포넌트가 픽되고..
+        //parent에서 ..
     }
 }
 export const newApp = new App(document.querySelector(".cardWrapper"));

@@ -16,6 +16,8 @@ export class ImageComponentImpl {
   constructor(text: string, imageURL: string) {
     this.element = document.createElement("li");
     this.element.setAttribute("class", "element");
+    this.element.setAttribute("draggable", "true");
+
 
     this.textSpan = document.createElement("span");
     this.textSpan.textContent = text;

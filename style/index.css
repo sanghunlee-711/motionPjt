@@ -91,6 +91,13 @@ footer a{
     min-height: 250px;
     max-height: 250px;
     margin: 2vh 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+    padding: 1vw;
+}
+.element:hover{
+    border: 1px solid white;
 }
 
 
@@ -248,8 +255,8 @@ footer a{
     display: none;
 }
 
-/* 
- {
+
+ /* {
 
     --bg-main-color: #00000080;
   
