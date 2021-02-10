@@ -33,8 +33,8 @@ export class App {
     });
   }
 
-  deleteComponent(component: ComponentType): void {
-    // parent.removeChild(component.element);
+  drageAndDrop(component: ComponentType):void{
+    
   }
 }
 
