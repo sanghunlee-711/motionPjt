@@ -6,7 +6,7 @@ export class VideoComponent extends BaseComponent<HTMLElement> {
                         <iframe class ="video__iframe"></iframe>
                     </div>
                 
-                    <h3 class="video_title"></h3>
+                    <h3 class="page-item__title video_title"></h3>
                 </section>
                             `);
 
