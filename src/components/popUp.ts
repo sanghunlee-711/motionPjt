@@ -1,5 +1,3 @@
-import { App } from "../app.js";
-
 export interface PopUpComponent {
   element: HTMLElement;
   name: string;

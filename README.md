@@ -10,3 +10,6 @@
 
 ## Purpose
 Learn how to make basic web app with OOP(Obejct Oriented  Programming) Concept
+
+# Ref.
+<a href = "https://academy.dream-coding.com/" target="_blank">Ellie's DreamCoding</a> 
