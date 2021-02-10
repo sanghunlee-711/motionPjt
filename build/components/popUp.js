@@ -41,14 +41,12 @@ export class PopUpComponentImpl {
         this.newButton = document.createElement("button");
         this.popupWrapper.appendChild(this.titleWrapper);
         if (titleForInput === "TODO TITLE") {
-            console.log("Task?");
             this.newButton.setAttribute("type", "submit");
             this.newButton.textContent = "Add";
             this.newButton.setAttribute("class", "addTodoButton");
             this.popupWrapper.appendChild(this.newButton);
             this.newButton.addEventListener("click", function () {
                 var _a;
-                console.log("Add Btn");
                 const newInput = document.createElement("input");
                 newInput.setAttribute("type", "text");
                 newInput.setAttribute("class", "contentsInput");
@@ -63,13 +61,11 @@ export class PopUpComponentImpl {
     quitpopUp() {
         const parent = document.querySelector(".page");
         const child = document.querySelector(".popUpContainer");
-        console.log(child);
         parent === null || parent === void 0 ? void 0 : parent.removeChild(child);
         // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
     }
     showPopUp(title, contents) {
         var _a;
-        console.log("show Pop UP!");
         const newPopUp = new PopUpComponentImpl(title, contents);
         (_a = document
             .querySelector(".page")) === null || _a === void 0 ? void 0 : _a.insertAdjacentElement("afterbegin", newPopUp.element);
@@ -77,7 +73,6 @@ export class PopUpComponentImpl {
     makeTodo() {
         let parent = document.querySelector("todoWrapper");
         let newOne = document.createElement('input');
-        console.log(parent === null || parent === void 0 ? void 0 : parent.childNodes.length);
         newOne.setAttribute('type', 'text');
         newOne.setAttribute('class', 'newTodo');
         parent === null || parent === void 0 ? void 0 : parent.insertAdjacentElement("afterbegin", newOne);

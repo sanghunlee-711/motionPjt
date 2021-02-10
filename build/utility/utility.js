@@ -5,10 +5,8 @@ import { TodoComponentImpl } from "../components/todo.js";
 import { PopUpComponentImpl } from "../components/popUp.js";
 import { newApp } from "../app.js";
 //팝업 열기& 닫기 & 제출
-console.log("HelloUtil");
 const navList = document.querySelectorAll(".navList");
 for (let i = 0; i < navList.length; i++) {
-    console.log("Hello for work");
     navList[i].addEventListener("click", function (e) {
         var _a, _b;
         const input = e.target;

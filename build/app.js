@@ -14,7 +14,6 @@ export class App {
         parent.insertAdjacentElement("afterbegin", component.element);
         //delete
         const deleteBtn = component.deleteButton;
-        console.log(deleteBtn);
         deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener("click", function () {
             parent.removeChild(component.element);
         });
@@ -27,50 +26,42 @@ export class App {
         element.addEventListener('dragstart', function (event) {
             const eventTarget = event.target;
             pickEl = eventTarget;
-            console.log("dragstart element");
         });
         element.addEventListener('dragend', function (event) {
             const eventTarget = event.target;
             if (eventTarget.className === "element") {
-                console.log("dragend", eventTarget.childNodes.values);
                 // eventTarget.style.border = "1px solid black";
             }
             if (overEl !== pickEl) {
-                pickEl.style.transition = "all 0.5s ease-in-out";
-                overEl.style.transition = "all 0.5s ease-in-out";
                 parent.insertBefore(pickEl, overEl);
+                overEl.style.margin = "2vh 0";
             }
-            console.log("overEl", overEl, "pickEl", pickEl);
         });
         parent.addEventListener('dragover', function (event) {
             const eventTarget = event.target;
             if (eventTarget.className === "element") {
                 eventTarget.style.border = "1px solid white";
+                eventTarget.style.margin = "8vh 0";
                 overEl = eventTarget;
-                console.log("dragover", eventTarget.innerText);
             }
             setTimeout(function () {
                 if (eventTarget.className === "element") {
                     eventTarget.style.border = "1px solid black";
+                    eventTarget.style.margin = "2vh 0";
                 }
             }, 500);
         });
-        element.addEventListener('drop', function (event) {
-            console.log("drop@@@");
-        });
-        //click되면 해당 컴포넌트가 픽되고..
-        //parent에서 ..
     }
 }
 export const newApp = new App(document.querySelector(".cardWrapper"));
-const imageComponent = new ImageComponentImpl("Hello", "https://picsum.photos/250/250");
+const imageComponent = new ImageComponentImpl("Image Title", "https://picsum.photos/250/250");
 const noteComponent = new NoteComponentEl("Note Title", "Note Contets");
-const videoComponent = new VideoComponentImpl("https://www.youtube.com/watch?v=KvIfjyyl_E4", "Youtube!");
-const todoComponent = new TodoComponentImpl("Todo Title!", [
-    "할1",
-    "할2",
-    "집가고싶다",
-    "TS짱짱맨",
+const videoComponent = new VideoComponentImpl("https://www.youtube.com/watch?v=DV3ZCTFNmWs", "This is Video Card");
+const todoComponent = new TodoComponentImpl("Todo Title", [
+    "HTML5",
+    "CSS3",
+    "TypeScript",
+    "OOP",
 ]);
 newApp.makeAndDeleteComp(imageComponent);
 newApp.makeAndDeleteComp(noteComponent);

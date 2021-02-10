@@ -83,14 +83,12 @@ export class PopUpComponentImpl implements PopUpComponent {
     this.popupWrapper.appendChild(this.titleWrapper);
 
     if(titleForInput === "TODO TITLE"){
-      console.log("Task?")
       this.newButton.setAttribute("type", "submit");
       this.newButton.textContent = "Add";
       this.newButton.setAttribute("class","addTodoButton");
       this.popupWrapper.appendChild(this.newButton);
 
       this.newButton.addEventListener("click", function(){
-        console.log("Add Btn")
         const newInput = document.createElement("input");
         newInput.setAttribute("type", "text");
         newInput.setAttribute("class","contentsInput");
@@ -110,12 +108,10 @@ export class PopUpComponentImpl implements PopUpComponent {
   quitpopUp(): void {
     const parent = document.querySelector(".page");
     const child = document.querySelector(".popUpContainer");
-    console.log(child);
     parent?.removeChild(child! as Node);
     // document.querySelector('.popUpContainer')?.setAttribute('style','display:none')
   }
   showPopUp(title: string, contents: string): void {
-    console.log("show Pop UP!");
     const newPopUp = new PopUpComponentImpl(title, contents);
 
     document
@@ -126,7 +122,6 @@ export class PopUpComponentImpl implements PopUpComponent {
   makeTodo(){
     let parent = document.querySelector("todoWrapper")
     let newOne = document.createElement('input');
-    console.log(parent?.childNodes.length);
     newOne.setAttribute('type', 'text');
     newOne.setAttribute('class', 'newTodo');
 

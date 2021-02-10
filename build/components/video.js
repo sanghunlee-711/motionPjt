@@ -33,17 +33,11 @@ export class VideoComponentImpl {
                 url.slice(0, url.indexOf("/watch")) +
                     "/embed/" +
                     url.slice(url.indexOf("=") + 1, url.length);
-            console.log(changed);
         }
         else {
             changed = url;
         }
         return changed;
-    }
-    remove() {
-        console.log("workd?");
-        const parent = document.querySelector(".page");
-        // this.element?.remove();
     }
 }
 //# sourceMappingURL=video.js.map
