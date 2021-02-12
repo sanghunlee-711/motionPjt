@@ -14,5 +14,11 @@ export class BaseComponent {
         }
         parent.removeChild(this.element);
     }
+    attach(component, position) {
+        component.attatchTo(this.element, position);
+    }
+    registerEventListener(type, listener) {
+        this.element.addEventListener(type, listener);
+    }
 }
 //# sourceMappingURL=component.js.map
