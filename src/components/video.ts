@@ -4,7 +4,6 @@ export interface VideoComponent {
   divWrapper: HTMLDivElement;
   deleteButton: HTMLButtonElement;
   changeUrl(url: string): string;
-  remove(): void;
 }
 
 export class VideoComponentImpl implements VideoComponent {
@@ -17,6 +16,8 @@ export class VideoComponentImpl implements VideoComponent {
   constructor(url: string, content: string) {
     this.element = document.createElement("li");
     this.element.setAttribute("class", "element");
+    this.element.setAttribute("draggable", "true");
+
 
     this.spanEl = document.createElement("span");
     this.divWrapper = document.createElement("div");
@@ -52,17 +53,11 @@ export class VideoComponentImpl implements VideoComponent {
         url.slice(0, url.indexOf("/watch")) +
         "/embed/" +
         url.slice(url.indexOf("=") + 1, url.length);
-      console.log(changed);
     } else {
       changed = url;
     }
 
     return changed;
   }
-  remove() {
-    console.log("workd?");
-    const parent = document.querySelector(".page");
 
-    // this.element?.remove();
-  }
 }

@@ -1,0 +1,20 @@
+{
+  "name": "motion-project",
+  "version": "1.0.0",
+  "description": "https://github.com/sanghunlee-711/motionPjt.git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanghunlee-711/motionPjt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanghunlee-711/motionPjt/issues"
+  },
+  "homepage": "https://sanghunlee-711.github.io/motionPjt/index.html"
+}

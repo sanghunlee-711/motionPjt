@@ -2,6 +2,7 @@ export class VideoComponentImpl {
     constructor(url, content) {
         this.element = document.createElement("li");
         this.element.setAttribute("class", "element");
+        this.element.setAttribute("draggable", "true");
         this.spanEl = document.createElement("span");
         this.divWrapper = document.createElement("div");
         this.divWrapper.setAttribute("class", "videoWrapper");
@@ -32,17 +33,11 @@ export class VideoComponentImpl {
                 url.slice(0, url.indexOf("/watch")) +
                     "/embed/" +
                     url.slice(url.indexOf("=") + 1, url.length);
-            console.log(changed);
         }
         else {
             changed = url;
         }
         return changed;
-    }
-    remove() {
-        console.log("workd?");
-        const parent = document.querySelector(".page");
-        // this.element?.remove();
     }
 }
 //# sourceMappingURL=video.js.map
